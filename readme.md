@@ -1,4 +1,21 @@
-NVBound is my personal neovim configuration. Its config structure derives from LazyVim.
+NVBound is my personal neovim configuration. 
+
+Its name is inspired by [Starbound](https://playstarbound.com). 
+
+Its config structure derives from [LazyVim](https://github.com/LazyVim/LazyVim).
+
+<a href="https://github.com/A7R7/NVBound/issues">
+    <img src="https://img.shields.io/github/issues/A7R7/NVBound?color=fab387&labelColor=303446&style=for-the-badge">
+</a>
+<a href="https://github.com/A7R7/NVBound/stargazers">
+    <img src="https://img.shields.io/github/stars/A7R7/NVBound?color=ca9ee6&labelColor=303446&style=for-the-badge">
+</a>
+<a href="https://github.com/A7R7/NVBound">
+    <img src="https://img.shields.io/github/repo-size/A7R7/NVBound?color=ea999c&labelColor=303446&style=for-the-badge">
+</a>
+<a href="https://github.com/A7R7/NVBound/blob/main/.github/LICENCE">
+    <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=ca9ee6&colorA=313244&colorB=cba6f7"/>
+</a>
 
 ## 📂 File Structure
 
