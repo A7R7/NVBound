@@ -69,23 +69,22 @@ map("i", "<esc>", "<right><esc>", { silent = true })
   map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
   map("n", "<C-q>", "<C-W>c", { desc = "Delete window" })
 
-if Util.has("smart-splits.nvim") then
+if Util.has("smart-splits") then
 	-- Move to window using the <ctrl> hjkl keys
-	local split = require("smart-splits")
-	map({"n", "t"}, "<C-h>",  split.move_cursor_left, { desc = "Go to left window" })
-	map({"n", "t"}, "<C-j>",  split.move_cursor_down, { desc = "Go to lower window" })
-	map({"n", "t"}, "<C-k>",  split.move_cursor_up, { desc = "Go to upper window" })
-	map({"n", "t"}, "<C-l>",  split.move_cursor_right, { desc = "Go to right window" })
+	map({"n", "t"}, "<C-h>",  require("smart-splits").move_cursor_left, { desc = "Go to left window" })
+	map({"n", "t"}, "<C-j>",  require("smart-splits").move_cursor_down, { desc = "Go to lower window" })
+	map({"n", "t"}, "<C-k>",  require("smart-splits").move_cursor_up, { desc = "Go to upper window" })
+	map({"n", "t"}, "<C-l>",  require("smart-splits").move_cursor_right, { desc = "Go to right window" })
 	-- Resize window using <ctrl> arrow keys
-	map({"n", "t"}, "<C-Up>",    split.resize_up,    { desc = "Resize window up" })
-	map({"n", "t"}, "<C-Down>",  split.resize_down,  { desc = "Resize window down" })
-	map({"n", "t"}, "<C-Left>",  split.resize_left,  { desc = "Resize window left" })
-	map({"n", "t"}, "<C-Right>", split.resize_right, { desc = "Resize window right" })
+	map({"n", "t"}, "<C-Up>",    require("smart-splits").resize_up,    { desc = "Resize window up" })
+	map({"n", "t"}, "<C-Down>",  require("smart-splits").resize_down,  { desc = "Resize window down" })
+	map({"n", "t"}, "<C-Left>",  require("smart-splits").resize_left,  { desc = "Resize window left" })
+	map({"n", "t"}, "<C-Right>", require("smart-splits").resize_right, { desc = "Resize window right" })
 -- swapping buffers between windows
-  map('n', '<leader><C-h>', split.swap_buf_left,  { desc = "Swap window left"})
-  map('n', '<leader><C-j>', split.swap_buf_down,  { desc = "Swap window down"})
-  map('n', '<leader><C-k>', split.swap_buf_up,    { desc = "Swap window up"})
-  map('n', '<leader><C-l>', split.swap_buf_right, { desc = "Swap window right"})
+  map('n', '<leader><C-h>', require("smart-splits").swap_buf_left,  { desc = "Swap window left"})
+  map('n', '<leader><C-j>', require("smart-splits").swap_buf_down,  { desc = "Swap window down"})
+  map('n', '<leader><C-k>', require("smart-splits").swap_buf_up,    { desc = "Swap window up"})
+  map('n', '<leader><C-l>', require("smart-splits").swap_buf_right, { desc = "Swap window right"})
 else
 	-- Move to window using the <ctrl> hjkl keys
 	map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
@@ -268,9 +267,8 @@ if Util.has("cheatsheet") then
 end
 
 if Util.has("neo-tree.nvim") then
-  local neo_cmd = require("neo-tree.command")
   map("n", "<leader>te",
-    function() neo_cmd.execute({ toggle = true, dir = require("util").get_root() }) end,
+    function() require("neo-tree.command").execute({ toggle = true, dir = require("util").get_root() }) end,
     {desc = "Toggle neo-tree"}
   )
   map("n", "<leader>e",

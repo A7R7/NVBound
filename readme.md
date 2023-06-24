@@ -21,9 +21,7 @@
 </div>
 
 NVBound is my personal neovim configuration. 
-
 Its name is inspired by [Starbound](https://playstarbound.com). 
-
 Its config structure derives from [LazyVim](https://github.com/LazyVim/LazyVim).
 
 ## 📂 File Structure
