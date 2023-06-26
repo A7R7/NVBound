@@ -23,12 +23,14 @@ return {
 		config = function()
 			require("telescope").setup({
 				extensions = {
+
 					fzf = {
 						fuzzy = true, -- false will only do exact matching
 						override_generic_sorter = true, -- override the generic sorter
 						override_file_sorter = true, -- override the file sorter
 						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 					},
+
 					undo = {
 						use_delta = true,
 						use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
@@ -36,15 +38,19 @@ return {
 						diff_context_lines = vim.o.scrolloff,
 						entry_format = "state #$ID, $STAT, $TIME",
 						mappings = {
+              n = {
+								["<cr>"] = require("telescope-undo.actions").restore,
+              },
 							i = {
-								["<cr>"] = require("telescope-undo.actions").yank_additions,
+								["<cr>"] = require("telescope-undo.actions").restore,
 								["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
 								["<C-cr>"] = require("telescope-undo.actions").restore,
 							},
 						},
 					},
+
 					zoxide = {
-						prompt_title = "[ Walking on the shoulders of TJ ]",
+						prompt_title = " Zoxide ",
 						mappings = {
 							default = {
 								after_action = function(selection)
@@ -52,12 +58,8 @@ return {
 								end,
 							},
 							["<C-s>"] = {
-								before_action = function(selection)
-									print("before C-s")
-								end,
-								action = function(selection)
-									vim.cmd.edit(selection.path)
-								end,
+								before_action = function(_) print("before C-s") end,
+								action = function(selection) vim.cmd.edit(selection.path) end,
 							},
 							-- Opens the selected entry in a new split
 							["<C-q>"] = {

@@ -69,22 +69,22 @@ map("i", "<esc>", "<right><esc>", { silent = true })
   map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
   map("n", "<C-q>", "<C-W>c", { desc = "Delete window" })
 
-if Util.has("smart-splits") then
+if Util.has("smart-splits.nvim") then
 	-- Move to window using the <ctrl> hjkl keys
-	map({"n", "t"}, "<C-h>",  require("smart-splits").move_cursor_left, { desc = "Go to left window" })
-	map({"n", "t"}, "<C-j>",  require("smart-splits").move_cursor_down, { desc = "Go to lower window" })
-	map({"n", "t"}, "<C-k>",  require("smart-splits").move_cursor_up, { desc = "Go to upper window" })
-	map({"n", "t"}, "<C-l>",  require("smart-splits").move_cursor_right, { desc = "Go to right window" })
+	map({"n", "t"}, "<C-h>",  function() require("smart-splits").move_cursor_left()  end, { desc = "Go to left window" })
+	map({"n", "t"}, "<C-j>",  function() require("smart-splits").move_cursor_down()  end, { desc = "Go to lower window" })
+	map({"n", "t"}, "<C-k>",  function() require("smart-splits").move_cursor_up()    end, { desc = "Go to upper window" })
+	map({"n", "t"}, "<C-l>",  function() require("smart-splits").move_cursor_right() end, { desc = "Go to right window" })
 	-- Resize window using <ctrl> arrow keys
-	map({"n", "t"}, "<C-Up>",    require("smart-splits").resize_up,    { desc = "Resize window up" })
-	map({"n", "t"}, "<C-Down>",  require("smart-splits").resize_down,  { desc = "Resize window down" })
-	map({"n", "t"}, "<C-Left>",  require("smart-splits").resize_left,  { desc = "Resize window left" })
-	map({"n", "t"}, "<C-Right>", require("smart-splits").resize_right, { desc = "Resize window right" })
+	map({"n", "t"}, "<C-Up>",    function() require("smart-splits").resize_up()    end,    { desc = "Resize window up" })
+	map({"n", "t"}, "<C-Down>",  function() require("smart-splits").resize_down()  end,  { desc = "Resize window down" })
+	map({"n", "t"}, "<C-Left>",  function() require("smart-splits").resize_left()  end,  { desc = "Resize window left" })
+	map({"n", "t"}, "<C-Right>", function() require("smart-splits").resize_right() end, { desc = "Resize window right" })
 -- swapping buffers between windows
-  map('n', '<leader><C-h>', require("smart-splits").swap_buf_left,  { desc = "Swap window left"})
-  map('n', '<leader><C-j>', require("smart-splits").swap_buf_down,  { desc = "Swap window down"})
-  map('n', '<leader><C-k>', require("smart-splits").swap_buf_up,    { desc = "Swap window up"})
-  map('n', '<leader><C-l>', require("smart-splits").swap_buf_right, { desc = "Swap window right"})
+  map('n', '<leader><C-h>', function() require("smart-splits").swap_buf_left()  end,  { desc = "Swap window left"})
+  map('n', '<leader><C-j>', function() require("smart-splits").swap_buf_down()  end,  { desc = "Swap window down"})
+  map('n', '<leader><C-k>', function() require("smart-splits").swap_buf_up()    end,    { desc = "Swap window up"})
+  map('n', '<leader><C-l>', function() require("smart-splits").swap_buf_right() end, { desc = "Swap window right"})
 else
 	-- Move to window using the <ctrl> hjkl keys
 	map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
@@ -114,6 +114,8 @@ if Util.has("bufferline.nvim") then
 	-- map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 	map("n", "<C-,>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 	map("n", "<C-.>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+	map("n", "<leader>,", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+	map("n", "<leader>.", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 	map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 	map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 	map("n", "<leader>bp", "<cmd>BufferLineTooglePin<cr>", { desc = "Toggle pin" })
@@ -225,7 +227,7 @@ if Util.has("telescope-zoxide") then
   map("n", "<leader>z", function () require("telescope").extensions.zoxide.list() end, { desc = "zoxide"})
 end
 
-map("n", "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" )
+-- map("n", "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" )
 map("n", "<leader>/", Util.telescope("live_grep"), "Find in Files (Grep)" )
 map("n", "<leader>:", "<cmd>Telescope command_history<cr>", "Command History" )
 map("n", "<leader><space>", Util.telescope("files"), "Find Files (root dir)" )
@@ -292,7 +294,7 @@ map ("n", "<leader>ll",
   {desc = "Watch compile"} )
 
 -- -- luasnip
-if Util.has("luasnip") then
+if Util.has("LuaSnip") then
   local ls = require("luasnip")
   map ("i", "<tab>", function() return ls.jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>" end, {})
   map ("n", "<leader>lr",
