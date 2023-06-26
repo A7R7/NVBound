@@ -20,9 +20,10 @@
   </a>
 </div>
 
-NVBound is my personal neovim configuration. 
+NVBound is my daily drive neovim config. 
 Its name is inspired by [Starbound](https://playstarbound.com). 
 Its config structure derives from [LazyVim](https://github.com/LazyVim/LazyVim).
+Currently it has many bugs to be fixed.
 
 ## 📂 File Structure
 

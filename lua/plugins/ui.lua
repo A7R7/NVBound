@@ -247,7 +247,7 @@ return {
 	-- dashboard
 	{
 		"goolord/alpha-nvim",
-		--{{{
+    --{{{
 		event = "VimEnter",
 		opts = function()
 			local dashboard = require("alpha.themes.dashboard")
@@ -255,7 +255,7 @@ return {
 			dashboard.section.header.opts.hl = "AlphaHeader"
 			dashboard.section.buttons.val = {
 				-- dashboard.button("f", "󰈞 " .. " - Find file", "<cmd>Telescope find_files <CR>"),
-				-- dashboard.button("n", " " .. " - New file", "<cmd>ene <BAR> startinsert <CR>"),
+				dashboard.button("n", " " .. " - New file", "<cmd>ene <BAR> startinsert <CR>"),
 				--     dashboard.button("g", "󰊄 " .. " - Find text", "<cmd>Telescope live_grep <CR>"),
         dashboard.button("r", " " .. " - Recent files", "<cmd> Telescope oldfiles <CR>"),
         dashboard.button("s", " " .. " - Restore Session", [[<cmd>lua require("persistence").load() <cr>]]),
@@ -271,7 +271,17 @@ return {
 			end
 			dashboard.section.footer.opts.hl = "Type"
 			dashboard.section.buttons.opts.hl = "AlphaButtons"
-			dashboard.opts.layout[1].val = 5
+			-- dashboard.opts.layout[1].val = 5
+      dashboard.config.layout = {
+        { type = "padding", val = 1 },
+        -- dashboard.section.terminal,
+        { type = "padding", val = 2 },
+        -- dashboard.section.header,
+        { type = "padding", val = 2 },
+        dashboard.section.buttons,
+        { type = "padding", val = 1 },
+        dashboard.section.footer,
+      }
 			return dashboard
 		end,
 

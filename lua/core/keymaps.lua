@@ -43,6 +43,7 @@ map("i", "<esc>", "<right><esc>", { silent = true })
 -- easy insert blank line
   map("n", "<cr>", "o<esc>", { desc = "insert newline" })
   map("n", "<S-cr>", "O<esc>", { desc = "insert newline" })
+
 -- -- clipboard
 --   --copy to system clipboard
 --   map("n", "<C-c>", '"+yy', { desc = "Copy line to system clipboard" })
@@ -223,10 +224,8 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("n", "<leader>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
-if Util.has("telescope-zoxide") then
-  map("n", "<leader>z", function () require("telescope").extensions.zoxide.list() end, { desc = "zoxide"})
-end
 
+map("n", "<leader>z", function () require("telescope").extensions.zoxide.list() end, { desc = "zoxide"})
 -- map("n", "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" )
 map("n", "<leader>/", Util.telescope("live_grep"), "Find in Files (Grep)" )
 map("n", "<leader>:", "<cmd>Telescope command_history<cr>", "Command History" )
