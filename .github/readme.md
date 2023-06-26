@@ -20,6 +20,7 @@
   </a>
 </div>
 
+![alpha](assets/alpha.png)
 NVBound is my daily drive neovim config. 
 Its name is inspired by [Starbound](https://playstarbound.com). 
 Its config structure derives from [LazyVim](https://github.com/LazyVim/LazyVim).

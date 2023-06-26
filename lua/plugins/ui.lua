@@ -251,6 +251,8 @@ return {
 		event = "VimEnter",
 		opts = function()
 			local dashboard = require("alpha.themes.dashboard")
+      -- dashboard.section.header.val = require("util.alpha_2").starbound_neovim.logo()
+      -- dashboard.section.header.opts.hl = require("util.alpha_2").starbound_neovim.color()
 			dashboard.section.header.val = vim.split(require("util.alpha").NeoV, "\n")
 			dashboard.section.header.opts.hl = "AlphaHeader"
 			dashboard.section.buttons.val = {
@@ -272,16 +274,6 @@ return {
 			dashboard.section.footer.opts.hl = "Type"
 			dashboard.section.buttons.opts.hl = "AlphaButtons"
 			-- dashboard.opts.layout[1].val = 5
-      dashboard.config.layout = {
-        { type = "padding", val = 1 },
-        -- dashboard.section.terminal,
-        { type = "padding", val = 2 },
-        -- dashboard.section.header,
-        { type = "padding", val = 2 },
-        dashboard.section.buttons,
-        { type = "padding", val = 1 },
-        dashboard.section.footer,
-      }
 			return dashboard
 		end,
 
