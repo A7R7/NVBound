@@ -3,8 +3,8 @@
 return {
 	{
 		"rcarriga/nvim-notify", -- Better `vim.notify()`
+    event = "VeryLazy",
 		-- {{{
-		--
 		keys = {
 			{
 				"<leader>un",
@@ -215,9 +215,7 @@ return {
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		cond = function()
-			if vim.g.neovide then
-				return false
-			end
+			if vim.g.neovide then return false end
 			return true
 		end,
 		--{{{
@@ -263,7 +261,7 @@ return {
         dashboard.button("s", " " .. " - Restore Session", [[<cmd>lua require("persistence").load() <cr>]]),
 				dashboard.button("z", "󰰶 " .. " - Zoxide", [[<cmd>lua require("telescope").extensions.zoxide.list()<cr>]]),
 				dashboard.button("t", " " .. " - Terminal", "<cmd>terminal<cr>"),
-				dashboard.button("c", " " .. " - Config", "<cmd>e $MYVIMRC <CR>"),
+				dashboard.button("c", " " .. " - Config", "<cmd>exe 'tcd' .stdpath('config')<cr>"),
 				dashboard.button("p", " " .. " - Packages", "<cmd>Lazy<CR>"),
 				dashboard.button("q", "󰅖 " .. " - Quit", "<cmd>qa<CR>"),
 			}
