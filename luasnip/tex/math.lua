@@ -4,8 +4,13 @@ local utils = require("_utils")
 return {
 	--sqrt------------------------------------------------------------------------------------
 	s(
-		{ trig = "sq", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+		{ trig = "sq ", wordTrig = false, snippetType = "autosnippet" },
 		fmta([[\sqrt{<>} ]], { d(1, utils.get_visual) }),
+		{ condition = tex.in_mathzone }
+	),
+	s(
+		{ trig = "sq(%w)", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+		fmta([[\sqrt[<>]{<>} ]], { f(utils.capture1), d(1, utils.get_visual) }),
 		{ condition = tex.in_mathzone }
 	),
 
@@ -52,4 +57,25 @@ return {
 		fmta([[\underline{<>}]], { d(1, utils.get_visual) }),
 		{ condition = tex.in_mathzone }
 	),
+  --functions-----------------------------------------------------------------------------
+  s(
+    { trig = "sin", snippetType = "autosnippet" },
+    fmta([[\sin ]], {}),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "cos", snippetType = "autosnippet" },
+    fmta([[\cos ]], {}),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "tan", snippetType = "autosnippet" },
+    fmta([[\tan ]], {}),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "exp", snippetType = "autosnippet" },
+    fmta([[\exp ]], {}),
+    { condition = tex.in_mathzone }
+  ),
 }

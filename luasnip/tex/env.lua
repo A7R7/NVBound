@@ -4,9 +4,9 @@ local conds = require("luasnip.extras.expand_conditions")
 return {
 
 	s(
-		{ trig = "env ", snippetType = "autosnippet" },
+		{ trig = "env ", snippetType = "autosnippet", name = "\\begin \\end" },
 		fmta(
-			[[
+		[[
     \begin{<>}
       <>
     \end{<>}
@@ -43,7 +43,7 @@ return {
 
 	-- al ----------------------------------------------------------------------------
 	s(
-		{ trig = "al ", snippetType = "autosnippet" },
+		{ trig = "al", name = "\\align" },
 		fmta(
 			[[
       \begin{align*}
@@ -68,11 +68,11 @@ return {
 		{ condition = tex.in_text and utils.no_letter_before }
 	),
 
-	s([[\]], { t({ [[\\]], [[~& ]] }) }, { condition = tex.in_env("align*") }),
+	s([[\]], { t({ [[\\]], [[& ]] }) }, { condition = tex.in_env("align*") }),
 	s([[=]], { t({ [[\\]], [[=& ]] }) }, { condition = tex.in_env("align*") }),
 	s([[>]], { t({ [[\\]], [[\implies& ]] }) }, { condition = tex.in_env("align*") }),
 
-	-- al ----------------------------------------------------------------------------
+	-- xases ----------------------------------------------------------------------------
 	s(
 		{ trig = "lc ", snippetType = "autosnippet" },
 		fmta(
@@ -86,6 +86,36 @@ return {
 		{ condition = tex.in_mathzone }
 	),
 
+  --enum/item----------------------------------------------------------------------------
+
+  s( { trig = "en", name = "enumerate" },
+    fmta (
+      [[
+        \begin{enumerate}
+          <>
+        \end{enumerate}
+      ]],
+      { d(1, utils.get_visual) }
+    ),
+    { condition = tex.in_text }
+  ),
+
+  s( { trig = "it", name = "itemize" },
+    fmta (
+      [[
+        \begin{itemize}
+          <>
+        \end{itemize}
+      ]],
+      { d(1, utils.get_visual) }
+    ),
+    { condition = tex.in_text }
+  ),
+
+	s( { trig = "ii", name = "item"},
+    t([[\item]]) ,
+  { condition = tex.in_env("enumerate") or tex.in_env("itemize") }
+  ),
 	--text----------------------------------------------------------------------------
 	s(
 		{ trig = "tt", snippetType = "autosnippet" },

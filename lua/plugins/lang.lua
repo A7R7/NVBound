@@ -17,6 +17,15 @@ return {
 			-- })
 		end,
 	},
+  {
+    "iurimateus/luasnip-latex-snippets.nvim",
+    cond = false,
+    ft = { "tex", "markdown" },
+    requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
+    config = function()
+      require'luasnip-latex-snippets'.setup()
+    end,
+  },
 
 	{
 		"elkowar/yuck.vim",

@@ -21,10 +21,20 @@
 </div>
 
 ![alpha](assets/alpha.png)
-NVBound is my daily drive neovim config. 
-Its name is inspired by [Starbound](https://playstarbound.com). 
-Its config structure derives from [LazyVim](https://github.com/LazyVim/LazyVim).
-Currently it has many bugs to be fixed.
+- NVBound is my daily drive neovim config. 
+- Its name is inspired by [Starbound](https://playstarbound.com). 
+- Its config structure derives from [LazyVim](https://github.com/LazyVim/LazyVim).
+- Currently it has Many bugs to be fixed.
+
+## 📝 TODO
+- [] Add more color to dashboard
+- [] Pre tab buffers
+- [] Copilot
+- [] Toggle Tab / space
+- [] Show Tab / space in status line
+- [] Show autoformat in status line
+- [x] Make notify work
+- [] Add border to cmp hintings
 
 ## 📂 File Structure
 
@@ -80,3 +90,6 @@ Currently it has many bugs to be fixed.
 └── syntax
     └── asm.vim           # syntax highlighting for asm
 </pre>
+
+
+

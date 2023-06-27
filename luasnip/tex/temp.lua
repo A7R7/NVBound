@@ -3,11 +3,11 @@ local utils = require("_utils")
 local mbw = tex.in_mathzone and utils.line_begin_or_non_letter
 return {
 
-	s(
-		{ trig = "pr", snippetType = "autosnippet" },
-		fmta([[\mathbf{Pr}( <> )]], { i(1) }),
-		{ condition = tex.in_mathzone }
-	),
+	-- s(
+	-- 	{ trig = "pr", snippetType = "autosnippet" },
+	-- 	fmta([[\mathbf{Pr}( <> )]], { i(1) }),
+	-- 	{ condition = tex.in_mathzone }
+	-- ),
 	-- s(
 	-- 	{ trig = "exp", snippetType = "autosnippet" },
 	-- 	fmta([=[\mathbf{E}[ <> ]]=], { i(1) }),

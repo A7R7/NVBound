@@ -153,7 +153,7 @@ return {
 
 	{
 		"kevinhwang91/rnvimr",
-		cond = false,
+		-- cond = false,
 		keys = {
 			{ "<leader>rg", "<cmd>RnvimrToggle<cr>", desc = "Toggle Ranger" },
 		},

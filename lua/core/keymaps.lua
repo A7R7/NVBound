@@ -71,32 +71,32 @@ map("i", "<esc>", "<right><esc>", { silent = true })
   map("n", "<C-q>", "<C-W>c", { desc = "Delete window" })
 
 if Util.has("smart-splits.nvim") then
-	-- Move to window using the <ctrl> hjkl keys
-	map({"n", "t"}, "<C-h>",  function() require("smart-splits").move_cursor_left()  end, { desc = "Go to left window" })
-	map({"n", "t"}, "<C-j>",  function() require("smart-splits").move_cursor_down()  end, { desc = "Go to lower window" })
-	map({"n", "t"}, "<C-k>",  function() require("smart-splits").move_cursor_up()    end, { desc = "Go to upper window" })
-	map({"n", "t"}, "<C-l>",  function() require("smart-splits").move_cursor_right() end, { desc = "Go to right window" })
-	-- Resize window using <ctrl> arrow keys
-	map({"n", "t"}, "<C-Up>",    function() require("smart-splits").resize_up()    end,    { desc = "Resize window up" })
-	map({"n", "t"}, "<C-Down>",  function() require("smart-splits").resize_down()  end,  { desc = "Resize window down" })
-	map({"n", "t"}, "<C-Left>",  function() require("smart-splits").resize_left()  end,  { desc = "Resize window left" })
-	map({"n", "t"}, "<C-Right>", function() require("smart-splits").resize_right() end, { desc = "Resize window right" })
+  -- Move to window using the <ctrl> hjkl keys
+  map({"n", "t"}, "<C-h>",  function() require("smart-splits").move_cursor_left()  end, { desc = "Go to left window" })
+  map({"n", "t"}, "<C-j>",  function() require("smart-splits").move_cursor_down()  end, { desc = "Go to lower window" })
+  map({"n", "t"}, "<C-k>",  function() require("smart-splits").move_cursor_up()    end, { desc = "Go to upper window" })
+  map({"n", "t"}, "<C-l>",  function() require("smart-splits").move_cursor_right() end, { desc = "Go to right window" })
+  -- Resize window using <ctrl> arrow keys
+  map({"n", "t"}, "<C-Up>",    function() require("smart-splits").resize_up()    end,    { desc = "Resize window up" })
+  map({"n", "t"}, "<C-Down>",  function() require("smart-splits").resize_down()  end,  { desc = "Resize window down" })
+  map({"n", "t"}, "<C-Left>",  function() require("smart-splits").resize_left()  end,  { desc = "Resize window left" })
+  map({"n", "t"}, "<C-Right>", function() require("smart-splits").resize_right() end, { desc = "Resize window right" })
 -- swapping buffers between windows
   map('n', '<leader><C-h>', function() require("smart-splits").swap_buf_left()  end,  { desc = "Swap window left"})
   map('n', '<leader><C-j>', function() require("smart-splits").swap_buf_down()  end,  { desc = "Swap window down"})
   map('n', '<leader><C-k>', function() require("smart-splits").swap_buf_up()    end,    { desc = "Swap window up"})
   map('n', '<leader><C-l>', function() require("smart-splits").swap_buf_right() end, { desc = "Swap window right"})
 else
-	-- Move to window using the <ctrl> hjkl keys
-	map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-	map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-	map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-	map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
-	-- Resize window using <ctrl> arrow keys
-	map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-	map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-	map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-	map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+  -- Move to window using the <ctrl> hjkl keys
+  map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+  map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
+  map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
+  map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+  -- Resize window using <ctrl> arrow keys
+  map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+  map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+  map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+  map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 end
 
 -- Move Lines
@@ -111,21 +111,21 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 map("n", "<C-z>", "u", { desc = "Undo" })
 -- buffers
 if Util.has("bufferline.nvim") then
-	-- map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-	-- map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-	map("n", "<C-,>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-	map("n", "<C-.>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-	map("n", "<leader>,", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-	map("n", "<leader>.", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-	map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-	map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-	map("n", "<leader>bp", "<cmd>BufferLineTooglePin<cr>", { desc = "Toggle pin" })
-	map("n", "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<cr>", { desc = "Delete unpined" })
+  -- map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  -- map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  map("n", "<C-,>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "<C-.>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  map("n", "<leader>,", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "<leader>.", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  map("n", "<leader>bp", "<cmd>BufferLineTooglePin<cr>", { desc = "Toggle pin" })
+  map("n", "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<cr>", { desc = "Delete unpined" })
 else
-	map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-	map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-	map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-	map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
+  map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+  map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 end
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
@@ -137,8 +137,8 @@ map("n", "<leader>n", "<cmd>nohlsearch<cr>", { desc = "Clear search highlights" 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
 map( "n", "<leader>ur",
-	"<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-	{ desc = "Redraw / clear hlsearch / diff update" }
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / clear hlsearch / diff update" }
 )
 
 map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
@@ -170,8 +170,8 @@ map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 
 if not Util.has("trouble.nvim") then
-	map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
-	map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
+  map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
+  map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 end
 
 -- stylua: ignore start
@@ -187,7 +187,17 @@ map("n", "<leader>tl", function() Util.toggle("relativenumber", true) Util.toggl
 map("n", "<leader>td", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
 map("n", "<leader>tm", "<cmd>set modifiable!<cr>", { desc = "Toggle Modifiable" })
 map("n", "<leader>tr", "<cmd>set readonly!<cr>", { desc = "Toggle Readonly" })
-
+map("n", "<leader>t<tab>",
+	function()
+    if vim.bo.expandtab == true then
+        vim.bo.expandtab = false
+        vim.notify("expandtab off")
+    else
+        vim.bo.expandtab = true
+        vim.notify("expandtab on")
+    end
+	end,
+	{desc = "Toggle Space/Tab"})
 -- highlights nder cursor
 if vim.fn.has("nvim-0.9.0") == 1 then
   map("n", "<leader>ti", vim.show_pos, { desc = "Inspect Pos" })
@@ -286,24 +296,29 @@ map ("n", "<leader>ll",
   function ()
     if vim.bo.filetype == "typst" then
       vim.cmd("TypstWatch")
+      vim.notify("start typst compile")
     elseif vim.bo.filetype == "tex" then
       vim.cmd("VimtexCompile")
+      vim.notify("start vimtex compile")
     end
   end,
   {desc = "Watch compile"} )
 
 -- -- luasnip
 if Util.has("LuaSnip") then
-  local ls = require("luasnip")
-  map ("i", "<tab>", function() return ls.jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>" end, {})
+  -- local ls = require("luasnip")
+  map ("i", "<tab>", function()
+    return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+  end, { expr = true, silent = true }
+  )
   map ("n", "<leader>lr",
     function()
       require("luasnip.loaders.from_lua").lazy_load({paths="~/.config/nvim/luasnip/"})
-      require("notify")("snippets reloaded", nil, {title = "LuaSnip"})
+      vim.notify("snippets reloaded", nil, {title = "LuaSnip"})
     end,
     "reload luasnip snippets"
   )
 end
 
 map ("n", "<leader>rk", function() vim.cmd("mapclear") Util.reload_module("core.keymaps") end, {desc = "reload keymaps"})
-map ("n", "<leader>yk", function() require("notify")("it is a test message!") end, {desc = "test"})
+map ("n", "<leader>yk", function() vim.notify("it is a test message!") end, {desc = "test"})
