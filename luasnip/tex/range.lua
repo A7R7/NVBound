@@ -37,6 +37,10 @@ s({trig = "int([%a%d])([%a%d]);", regTrig = true, wordTrig = false, snippetType=
 ),
 
 
+s({trig = "iint ", snippetType="autosnippet"},
+  fmta( [[\iint_{<>}^{<>} ]], {i(1), i(2)}),
+  {condition = tex.in_mathzone}
+),
 
 --sum-------------------------------------------------------------------------------
 s({trig = "sum ", regTrig = true, wordTrig = false, snippetType="autosnippet"},

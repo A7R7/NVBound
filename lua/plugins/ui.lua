@@ -135,8 +135,9 @@ return {
 			local dashboard = require("alpha.themes.dashboard")
       -- dashboard.section.header.val = require("util.alpha_2").starbound_neovim.logo()
       -- dashboard.section.header.opts.hl = require("util.alpha_2").starbound_neovim.color()
-			dashboard.section.header.val = vim.split(require("util.alpha").NeoV, "\n")
-			dashboard.section.header.opts.hl = "AlphaHeader"
+			-- dashboard.section.header.val = vim.split(require("util.alpha").NeoV, "\n")
+			-- dashboard.section.header.opts.hl = "AlphaHeader"
+      -- dashboard.section.header = require("util.alpha_3").init()
 			dashboard.section.buttons.val = {
 				-- dashboard.button("f", "󰈞 " .. " - Find file", "<cmd>Telescope find_files <CR>"),
 				dashboard.button("n", " " .. " - New file", "<cmd>ene <BAR> startinsert <CR>"),
@@ -155,7 +156,13 @@ return {
 			end
 			dashboard.section.footer.opts.hl = "Type"
 			dashboard.section.buttons.opts.hl = "AlphaButtons"
-			-- dashboard.opts.layout[1].val = 5
+      dashboard.opts.layout = {
+        { type = "padding", val = 3 },
+        require("util.alpha_3").init(),
+        { type = "padding", val = 3 },
+        dashboard.section.buttons,
+        dashboard.section.footer,
+      }
 			return dashboard
 		end,
 
@@ -227,6 +234,8 @@ return {
 
 	{
 		"dstein64/nvim-scrollview",
+    cond = false,
+    event = "VeryLazy",
 		--{{{
 		opts = {
 			excluded_filetypes = { "nerdtree" },

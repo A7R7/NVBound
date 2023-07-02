@@ -273,8 +273,8 @@ map("n", "<leader>sw", Util.telescope("grep_string"), "Word (root dir)")
 map("n", "<leader>sW", Util.telescope("grep_string", { cwd = false }), "Word (cwd)")
 map("n", "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), "Colorscheme with preview")
 
-if Util.has("cheatsheet") then
-  map("n", "<leader>?", "<cmd>cheatsheet<cr>", {desc = "Cheatsheet"})
+if Util.has("cheatsheet.nvim") then
+  map("n", "<leader>?", "<cmd>Cheatsheet<cr>", {desc = "Cheatsheet"})
 end
 
 if Util.has("neo-tree.nvim") then

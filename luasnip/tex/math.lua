@@ -74,6 +74,22 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
+    { trig = "sec", snippetType = "autosnippet" },
+    fmta([[\sec ]], {}),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "csc", snippetType = "autosnippet" },
+    fmta([[\csc ]], {}),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "cot", snippetType = "autosnippet" },
+    fmta([[\cot ]], {}),
+    { condition = tex.in_mathzone }
+  ),
+
+  s(
     { trig = "exp", snippetType = "autosnippet" },
     fmta([[\exp ]], {}),
     { condition = tex.in_mathzone }

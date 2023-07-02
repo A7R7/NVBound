@@ -1,6 +1,7 @@
 local utils = require("_utils")
 local tex = require("_tex")
 return {
+  --arrows
 	s({ trig = "<- ", snippetType = "autosnippet" }, { t([[\leftarrow ]]) }, { condition = tex.in_mathzone }),
 	s({ trig = "-> ", snippetType = "autosnippet" }, { t([[\rightarrow ]]) }, { condition = tex.in_mathzone }),
 	s({ trig = "to", snippetType = "autosnippet" }, { t([[\to ]]) }, { condition = tex.in_mathzone }),
@@ -12,6 +13,9 @@ return {
 	s({ trig = "==>", snippetType = "autosnippet" }, { t([[\Longrightarrow ]]) }, { condition = tex.in_mathzone }),
 	s({ trig = ">>", snippetType = "autosnippet" }, { t([[\implies ]]) }, { condition = tex.in_mathzone }),
 
+  s({ trig = "+-", snippetType = "autosnippet" }, { t([[\pm ]]) }, {condition = tex.in_mathzone}),
+  s({ trig = "-+", snippetType = "autosnippet" }, { t([[\mp ]]) }, {condition = tex.in_mathzone}),
+ 
 	s({ trig = "lq", snippetType = "autosnippet" }, { t([[\leq ]]) }, { condition = tex.in_mathzone }),
 	s({ trig = "gq", snippetType = "autosnippet" }, { t([[\geq ]]) }, { condition = tex.in_mathzone }),
 	s({ trig = "leq", snippetType = "autosnippet" }, { t([[\leq ]]) }, { condition = tex.in_mathzone }),

@@ -63,15 +63,15 @@ autocmd("FileType", {
 	end,
 })
 
--- auto open pdf in zathura
-autocmd("BufReadPost", {
-	pattern = { "*.pdf" },
-	callback = function()
-		local filepath = vim.fn.expand("%:p")
-		vim.api.nvim_command("silent !zathura " .. filepath .. " &")
-		vim.api.nvim_command("bwipeout!")
-	end,
-})
+-- -- auto open pdf in zathura
+-- autocmd("BufReadPost", {
+-- 	pattern = { "*.pdf" },
+-- 	callback = function()
+-- 		local filepath = vim.fn.expand("%:p")
+-- 		vim.api.nvim_command("silent !zathura " .. filepath .. " &")
+-- 		vim.api.nvim_command("bwipeout!")
+-- 	end,
+-- })
 
 -- disable auto format
 autocmd({ "FileType" }, {
@@ -79,6 +79,23 @@ autocmd({ "FileType" }, {
 	callback = function()
 		vim.b.autoformat = false
 	end,
+})
+
+-- autocmd("TabNewEntered", {
+--   desc = "Trigger Alpha and notify path when creating a new tab",
+--   group = augroup("AlphaStart"),
+--   callback = function()
+--     vim.notify("path", nil, {title = "New Tab"})
+--     vim.cmd("Alpha")
+--   end,
+-- })
+
+local alpha_start_group = vim.api.nvim_create_augroup("AlphaStart", { clear = true })
+vim.api.nvim_create_autocmd("TabNewEntered", {
+  callback = function()
+    require("alpha").start()
+  end,
+  group = alpha_start_group,
 })
 
 -- autocmd("WinEnter", {

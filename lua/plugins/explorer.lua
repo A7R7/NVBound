@@ -3,19 +3,17 @@ local Util = require("util")
 
 return {
 
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
-	},
 	-- fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"debugloop/telescope-undo.nvim",
-			"jvgrootveld/telescope-zoxide",
-      {
-        "sudormrfbin/cheatsheet.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+			{"nvim-lua/plenary.nvim"},
+			{"debugloop/telescope-undo.nvim"},
+			{"jvgrootveld/telescope-zoxide"},
+      { "sudormrfbin/cheatsheet.nvim",
         cmd = { "Cheatsheet" },
       },
 		},
@@ -54,7 +52,7 @@ return {
 						mappings = {
 							default = {
 								after_action = function(selection)
-									print("Update to (" .. selection.z_score .. ") " .. selection.path)
+									vim.notify("Update to (" .. selection.z_score .. ") " .. selection.path, nil, {title = "Zoxide"})
 								end,
 							},
 							["<C-s>"] = {
