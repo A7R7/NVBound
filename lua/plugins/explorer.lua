@@ -51,17 +51,12 @@ return {
 						prompt_title = " Zoxide ",
 						mappings = {
 							default = {
+                action = function(selection)
+                  vim.cmd.tcd(selection.path)
+                end,
 								after_action = function(selection)
-									vim.notify("Update to (" .. selection.z_score .. ") " .. selection.path, nil, {title = "Zoxide"})
+									vim.notify("(" .. selection.z_score .. ") " .. selection.path, nil, {title = "Zoxide updated tab path"})
 								end,
-							},
-							["<C-s>"] = {
-								before_action = function(_) print("before C-s") end,
-								action = function(selection) vim.cmd.edit(selection.path) end,
-							},
-							-- Opens the selected entry in a new split
-							["<C-q>"] = {
-								action = require("telescope._extensions.zoxide.utils").create_basic_command("split"),
 							},
 						},
 					},

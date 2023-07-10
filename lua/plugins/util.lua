@@ -76,8 +76,16 @@ return {
         ["core.integrations.telescope"] = {},
 				["core.concealer"] = {}, -- Adds pretty icons to your documents
 				["core.dirman"] = { -- Manages Neorg workspaces
-					config = { workspaces = { notes = "~/notes", }, },
+					config = {
+            workspaces = {
+              notes = "~/notes",
+            },
+          },
 				},
+        ["core.export.markdown"] = {},
+        ["core.summary"] = {},
+        -- ["core.ui"] = {},
+        -- ["core.ui.calendar"] = {},
 			},
 		},
     config = function (_, opts)
@@ -87,7 +95,7 @@ return {
         function(_, keybinds)
           keybinds.map_event_to_mode("norg",
             {
-              n = { { "<C-s>", "core.integrations.telescope.find_linkable" }, },
+              -- n = { { "<C-s>", "core.integrations.telescope.find_linkable" }, },
               i = { { "<C-l>", "core.integrations.telescope.insert_link" }, },
             },
             { silent = true, noremap = true, }

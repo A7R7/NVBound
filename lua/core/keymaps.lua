@@ -19,24 +19,27 @@ local function register(mode, lhs, rhs, opts)
 end
 
 local function map(mode, lhs, rhs, opts)
-  if type(mode) == "string" then
-    register(mode, lhs, rhs, opts)
-  elseif type(mode) == "table" then
-    for _, _mode in ipairs(mode) do
-      register(_mode, lhs, rhs, opts)
-    end
+  for i = 1, #mode do
+    local m = mode:sub(i, i)
+    register(m, lhs, rhs, opts)
   end
+  -- if type(mode) == "string" then
+  -- elseif type(mode) == "table" then
+  --   for _, _mode in ipairs(mode) do
+  --     register(_mode, lhs, rhs, opts)
+  --   end
+  -- end
 end
 
 map("i", "<esc>", "<right><esc>", { silent = true })
 
 -- easy movement
-  map({"n", "v"}, "H", '^', {desc = "Goto line start"})
-  map({"n", "v"}, "L", '$', {desc = "Goto line end"})
-  map({"n", "v"}, "J", '<C-d>', {desc = "Move down"})
-  map({"n", "v"}, "K", '<C-u>', {desc = "Move up"})
-  map({"n", "v"}, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-  map({"n", "v"}, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+  map("nv", "H", '^', {desc = "Goto line start"})
+  map("nv", "L", '$', {desc = "Goto line end"})
+  map("nv", "J", '<C-d>', {desc = "Move down"})
+  map("nv", "K", '<C-u>', {desc = "Move up"})
+  map("nv", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+  map("nv", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 --join  union
   map("n", "<C-u>", "J", {desc = "union 2 line"})
   map("i", "<C-u>", "<esc>Ji", {desc = "union 2 line"})
@@ -72,15 +75,19 @@ map("i", "<esc>", "<right><esc>", { silent = true })
 
 if Util.has("smart-splits.nvim") then
   -- Move to window using the <ctrl> hjkl keys
-  map({"n", "t"}, "<C-h>",  function() require("smart-splits").move_cursor_left()  end, { desc = "Go to left window" })
-  map({"n", "t"}, "<C-j>",  function() require("smart-splits").move_cursor_down()  end, { desc = "Go to lower window" })
-  map({"n", "t"}, "<C-k>",  function() require("smart-splits").move_cursor_up()    end, { desc = "Go to upper window" })
-  map({"n", "t"}, "<C-l>",  function() require("smart-splits").move_cursor_right() end, { desc = "Go to right window" })
+  map("nt", "<C-h>",  function() require("smart-splits").move_cursor_left()  end, { desc = "Go to left window" })
+  map("nt", "<C-j>",  function() require("smart-splits").move_cursor_down()  end, { desc = "Go to lower window" })
+  map("nt", "<C-k>",  function() require("smart-splits").move_cursor_up()    end, { desc = "Go to upper window" })
+  map("nt", "<C-l>",  function() require("smart-splits").move_cursor_right() end, { desc = "Go to right window" })
+  map("nt", "<leader>wh",  function() require("smart-splits").move_cursor_left()  end, { desc = "Go to left window" })
+  map("nt", "<leader>wj",  function() require("smart-splits").move_cursor_down()  end, { desc = "Go to lower window" })
+  map("nt", "<leader>wk",  function() require("smart-splits").move_cursor_up()    end, { desc = "Go to upper window" })
+  map("nt", "<leader>wl",  function() require("smart-splits").move_cursor_right() end, { desc = "Go to right window" })
   -- Resize window using <ctrl> arrow keys
-  map({"n", "t"}, "<C-Up>",    function() require("smart-splits").resize_up()    end,    { desc = "Resize window up" })
-  map({"n", "t"}, "<C-Down>",  function() require("smart-splits").resize_down()  end,  { desc = "Resize window down" })
-  map({"n", "t"}, "<C-Left>",  function() require("smart-splits").resize_left()  end,  { desc = "Resize window left" })
-  map({"n", "t"}, "<C-Right>", function() require("smart-splits").resize_right() end, { desc = "Resize window right" })
+  map("nt", "<C-Up>",    function() require("smart-splits").resize_up()    end,    { desc = "Resize window up" })
+  map("nt", "<C-Down>",  function() require("smart-splits").resize_down()  end,  { desc = "Resize window down" })
+  map("nt", "<C-Left>",  function() require("smart-splits").resize_left()  end,  { desc = "Resize window left" })
+  map("nt", "<C-Right>", function() require("smart-splits").resize_right() end, { desc = "Resize window right" })
 -- swapping buffers between windows
   map('n', '<leader><C-h>', function() require("smart-splits").swap_buf_left()  end,  { desc = "Swap window left"})
   map('n', '<leader><C-j>', function() require("smart-splits").swap_buf_down()  end,  { desc = "Swap window down"})
@@ -141,11 +148,11 @@ map( "n", "<leader>ur",
   { desc = "Redraw / clear hlsearch / diff update" }
 )
 
-map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
+map("nx", "gw", "*N", { desc = "Search word under cursor" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-map({"n","x", "o"}, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map({"n","x", "o"}, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map("nxo", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map("nxo", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- Add undo break-points
 -- map("i", ",", ",<c-g>u")
@@ -154,7 +161,7 @@ map({"n","x", "o"}, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev se
 map("i", "<CR>", "<CR><c-g>u")
 
 -- save file
-map({ "i", "v", "n", "s" }, "<C-s>", "<ESC><cmd>w<cr>", { desc = "Save file" })
+map("nivs", "<C-s>", "<ESC><cmd>w<cr>", { desc = "Save file" })
 
 -- better indenting
 map("v", "<", "<gv")
@@ -217,9 +224,9 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 -- map("t", "<esc><esc>", "<c-\\><c-n>", {desc = "Enter Normal Mode"})
 
 if Util.has("toggleterm.nvim") then
-  map({"n", "t"}, "<A-f>", "<cmd>ToggleTerm direction=float<cr>", {desc = "ToggleTerm float"})
-  map({"n", "t"}, "<A-h>", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", {desc = "ToggleTerm horizontal"})
-  map({"n", "t"}, "<A-v>", "<cmd>ToggleTerm size=80 direction=vertical<cr>", {desc = "ToggleTerm vertical"})
+  map("nt", "<A-f>", "<cmd>ToggleTerm direction=float<cr>", {desc = "ToggleTerm float"})
+  map("nt", "<A-h>", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", {desc = "ToggleTerm horizontal"})
+  map("nt", "<A-v>", "<cmd>ToggleTerm size=80 direction=vertical<cr>", {desc = "ToggleTerm vertical"})
   map("t", "<esc><esc>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), {desc = "escape terminal mode"})
 end
 
