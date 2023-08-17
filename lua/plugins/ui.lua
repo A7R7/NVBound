@@ -96,10 +96,6 @@ return {
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-		cond = function()
-			if vim.g.neovide then return false end
-			return true
-		end,
 		--{{{
 		opts = {
 			lsp = {
@@ -135,9 +131,8 @@ return {
 			local dashboard = require("alpha.themes.dashboard")
       -- dashboard.section.header.val = require("util.alpha_2").starbound_neovim.logo()
       -- dashboard.section.header.opts.hl = require("util.alpha_2").starbound_neovim.color()
-			-- dashboard.section.header.val = vim.split(require("util.alpha").NeoV, "\n")
-			-- dashboard.section.header.opts.hl = "AlphaHeader"
-      -- dashboard.section.header = require("util.alpha_3").init()
+			dashboard.section.header.val = vim.split(require("util.alpha").NeoV, "\n")
+			dashboard.section.header.opts.hl = "AlphaHeader"
 			dashboard.section.buttons.val = {
 				-- dashboard.button("f", "󰈞 " .. " - Find file", "<cmd>Telescope find_files <CR>"),
 				dashboard.button("n", " " .. " - New file", "<cmd>ene <BAR> startinsert <CR>"),
@@ -156,13 +151,13 @@ return {
 			end
 			dashboard.section.footer.opts.hl = "Type"
 			dashboard.section.buttons.opts.hl = "AlphaButtons"
-      dashboard.opts.layout = {
-        { type = "padding", val = 3 },
-        require("util.alpha_3").init(),
-        { type = "padding", val = 3 },
-        dashboard.section.buttons,
-        dashboard.section.footer,
-      }
+      -- dashboard.opts.layout = {
+      --   { type = "padding", val = 3 },
+      --   require("util.alpha_3").init(),
+      --   { type = "padding", val = 3 },
+      --   dashboard.section.buttons,
+      --   dashboard.section.footer,
+      -- }
 			return dashboard
 		end,
 
